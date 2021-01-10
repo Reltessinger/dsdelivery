@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Orders from './Orders';
 import Home from './Home';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 function Routes(){
     return(
@@ -15,6 +16,7 @@ function Routes(){
                     <Home/>
                 </Route>
             </Switch>
+            <Footer />
         </BrowserRouter>
     )
 }
