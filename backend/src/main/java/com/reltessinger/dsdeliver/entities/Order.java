@@ -27,7 +27,7 @@ public class Order implements Serializable {
 	private Double longitude;
 	private Instant moment;
 	private OrderStatus status;
-	private Double total;
+	
 	@ManyToMany
 	@JoinTable(name = "tb_order_product",
 		joinColumns = @JoinColumn(name = "order_id"),
@@ -95,13 +95,13 @@ public class Order implements Serializable {
 	}
 
 	public Double getTotal() {
-		return total;
+		double sum = 0;
+		for(Product p : products) {
+			sum += p.getPrice();
+		}
+		return sum;
 	}
-
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
+	
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -134,7 +134,7 @@ public class Order implements Serializable {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", address=" + address + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", moment=" + moment + ", status=" + status + ", total=" + total + ", products=" + products + "]";
+				+ ", moment=" + moment + ", status=" + status + ", products=" + products + "]";
 	}
 
 }
